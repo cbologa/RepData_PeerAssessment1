@@ -8,10 +8,9 @@ output:
 
 ## Loading and preprocessing the data
 
-Unzip and load data, and convert the factor field "date" to calendar dates.
-
 
 ```r
+# Unzip and load data, and convert the factor field "date" to calendar dates.
 library(ggplot2)
 unzip("activity.zip")
 activity <- read.csv("activity.csv")
@@ -37,10 +36,12 @@ The mean of the total number of steps taken per day is **10766.2**.
 The median of the total number of steps taken per day is **10765**.  
 
 ## What is the average daily activity pattern?
-In order to keep my code as simple and intelligible as possible, I subjectively decided to not convert the interval numbers to time, and display all the graphs of number of steps as function of the interval numbers. At the same time, when I am going to review other people's work, I will not deduct any points from people who decided to do it the other way.
 
 
 ```r
+# In order to keep my code as simple and intelligible as possible, I subjectively 
+# decided to not convert the interval numbers to time, and display all the graphs 
+# of number of steps as function of the interval numbers.
 pattern1 <- aggregate(steps ~ interval, data=activity, mean)
 # Find the 5 minute interval that contains the maximum average number of steps
 maxinterval <- pattern1$interval[which.max(pattern1$steps)]
@@ -85,7 +86,6 @@ The median of the total number of steps taken per day (NO imputation) = **10765*
 The median of the total number of steps taken per day (WITH imputation) = **10766**  
 
 ## Are there differences in activity patterns between weekdays and weekends?
-Label each date as weekday or weekend and make a panel plot containing a time series plot of the 5-minute interval and the average number of steps taken, averaged across all weekday days or weekend days.
 
 
 ```r

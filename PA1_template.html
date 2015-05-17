@@ -203,9 +203,8 @@ hr {
 <body>
 <h2>Loading and preprocessing the data</h2>
 
-<p>Unzip and load data, and convert the factor field &ldquo;date&rdquo; to calendar dates.</p>
-
-<pre><code class="r">library(ggplot2)
+<pre><code class="r"># Unzip and load data, and convert the factor field &quot;date&quot; to calendar dates.
+library(ggplot2)
 unzip(&quot;activity.zip&quot;)
 activity &lt;- read.csv(&quot;activity.csv&quot;)
 activity$date &lt;- as.Date(as.character(activity$date),&quot;%Y-%m-%d&quot;)
@@ -229,9 +228,10 @@ The median of the total number of steps taken per day is <strong>10765</strong>.
 
 <h2>What is the average daily activity pattern?</h2>
 
-<p>In order to keep my code as simple and intelligible as possible, I subjectively decided to not convert the interval numbers to time, and display all the graphs of number of steps as function of the interval numbers. At the same time, when I am going to review other people&#39;s work, I will not deduct any points from people who decided to do it the other way.</p>
-
-<pre><code class="r">pattern1 &lt;- aggregate(steps ~ interval, data=activity, mean)
+<pre><code class="r"># In order to keep my code as simple and intelligible as possible, I subjectively 
+# decided to not convert the interval numbers to time, and display all the graphs 
+# of number of steps as function of the interval numbers.
+pattern1 &lt;- aggregate(steps ~ interval, data=activity, mean)
 # Find the 5 minute interval that contains the maximum average number of steps
 maxinterval &lt;- pattern1$interval[which.max(pattern1$steps)]
 # Plot the average daily patterns
@@ -272,8 +272,6 @@ The mean of the total number of steps taken per day (WITH imputation) = <strong>
 The median of the total number of steps taken per day (WITH imputation) = <strong>10766</strong>  </p>
 
 <h2>Are there differences in activity patterns between weekdays and weekends?</h2>
-
-<p>Label each date as weekday or weekend and make a panel plot containing a time series plot of the 5-minute interval and the average number of steps taken, averaged across all weekday days or weekend days.</p>
 
 <pre><code class="r">#Label each date as weekday or weekend
 activity2$wday &lt;- as.factor(ifelse(weekdays(activity2$date) %in% c(&quot;Saturday&quot;,&quot;Sunday&quot;), &quot;weekend&quot;, &quot;weekday&quot;))
